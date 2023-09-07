@@ -12,22 +12,17 @@
     <div class="row">
     <div class="col-md-8">
         <article class="blog-post">
-        <h3 class="blog-post-title">{{ page.intro }}</h1>
-        <p class="blog-post-meta pb-4 mb-4 border-bottom">Publicado el {{ page.date }}</p> <!--Fecha de publicación-->
+            <h3 class="blog-post-title">{{ page.intro }}</h1>
+            <p class="blog-post-meta pb-4 mb-4 border-bottom">Publicado el {{ page.date }}</p> <!--Fecha de publicación-->
 
-        {{ page.body|richtext }}
+            {{ page.body|richtext }}
 
-        <h4 class="fst-italic">Galería de imágenes</h4>
-        <div class="d-flex justify-content-center align-items-center">
-            
-            {% for item in page.gallery_images.all %}
-                <div class="mx-auto text-center">
+            <div class="d-flex justify-content-between align-items-center mt-5">
+                
+                {% for item in page.gallery_images.all %}
                     {% image item.image fill-320x240 %}
-                    <p><em>{{ item.caption }}</em></p>
-                </div>
-            {% endfor %}
-        </div>
-        
+                {% endfor %}
+            </div>
         </article>
     </div>
 
@@ -102,14 +97,12 @@
         <!--Etiquetas del artículo-->
         {% if page.tags.all.count %}
         <div class="tags">
-            <h3>Tags:
+            <h3>Tags:</h3>
             <div class="btn-group" role="group" aria-label="Basic example">
                 {% for tag in page.tags.all %}
                 <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="btn btn-outline-amez">{{ tag }}</a>
                 {% endfor %}
             </div>
-            </h3>
-            
             
         </div>
         {% endif %}

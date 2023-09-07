@@ -29,9 +29,7 @@ class HomePage(Page):
         FieldPanel('about_us'),
         FieldPanel('about_us_image'),
         FieldPanel('event_info'),
-        FieldPanel('event_image'),
-        FieldPanel('sponsors'),
-        InlinePanel('gallery_images', label="Gallery images"),
+        FieldPanel('event_image')
     ]
     
 class SponsorsGalleryImage(Orderable):

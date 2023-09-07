@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+    {% if request.GET.tag %}
+    <header class="subhead text-center text-white">
+        <h4 class="masthead-subheading">Posts sobre '{{ request.GET.tag }}' </h4>
+    </header>
+   
+        <div class="container mt-5" style="min-height: 65vh !important;">
+            {% for post in blogpages %}
+            {% with post=post.specific %}
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-300 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-3 text-amez">
+                        {% for category in post.categories.all %}
+                            {% image category.icon fill-24x24 style="vertical-align: center" %}
+                            &nbsp;
+                            {{ category.name }}
+                        {% endfor %}
+                    </strong>
+                    <h3 class="mb-0">{{ post.title }}</h3>
+                    <div class="mb-1 text-muted">{{ post.date }}</div>
+                    <p class="card-text mb-auto">{{ post.intro }}</p>
+                    <a href="{% pageurl post %}" class="btn btn-outline-dark w-50">Leer artículo</a>
+                </div>
+
+            <div class="col-auto d-none d-lg-block">
+            {% with post.main_image as main_image %}
+                <div class="bd-placeholder-img" width="600" height="600">
+                    {% image main_image fill-600x600 %}
+                </div>
+            {% endwith %}
+            </div>
+        
+        </div>
+        {% endwith %}
+
+    {% empty %}
+    <div class="container mt-5 text-center" style="min-height: 65vh !important;">
+        <h2>No hemos encontrado ningún post con la etiqueta '{{ request.GET.tag }}'</h2>
+        <p>Por favor, realiza una búsqueda diferente</p>
+        <div>
+            <nav class="blog-pagination mt-4" aria-label="Pagination">
+                <a class="btn btn-outline-dark" href="{{ page.get_parent.url }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                    </svg>
+                    &nbsp; Volver a Últimas noticias
+                </a>
+            </nav>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

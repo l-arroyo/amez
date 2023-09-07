@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <header class="subhead text-center text-white">
+        <h1 class="masthead-subheading">{{ page.title }}</h1>
+    </header>
+    <div class="container mt-5 mb-4 text-center align-contents-center" style="min-height: 62vh !important;">
+    <h3>{{ self.thank_you_text|richtext }}</h3>
+    </div>
+{% endblock %}

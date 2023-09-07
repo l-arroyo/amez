@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}
+{% endblock %}
+{% block content %}
+{% include 'includes/header.html' %}
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+
+                    {% image page.about_us_image fill-400x400 as about_us_image %}
+                    <img src="{{ about_us_image.url }}" alt="{{ about_us_image.alt }}" class="img-fluid rounded-circle">
+
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5 text-center">
+                    <h2 class="display-4">¿Quiénes somos?</h2>
+                    <p>{{ page.about_us|richtext }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6">
+                {% image page.event_image fill-400x400 as event_image %}
+                <img src="{{ event_image.url }}" alt="{{ event_image.alt }}" class="img-fluid rounded-circle">
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5 text-center">
+                    <h2 class="display-4">Eventos</h2>
+                    <p>{{ page.event_info|richtext }}</p>
+                    <p>Puedes acceder a la información de nuestro próximo evento aquí:</p>
+                    <a href="/evento" class="btn btn-amez rounded-pill px-4 py-4 mt-2">PRÓXIMO EVENTO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="m-5 mx-auto w-75" />
+<section>
+    <div class="container px-5">
+         <div class="p-5 text-center">
+            <h2 class="display-4">Sponsors</h2>
+            <p>{{ page.sponsors|richtext }}</p>
+        </div>
+        <div class="d-flex justify-content-center align-items-center pb-5">
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                    {% for item in page.gallery_images.all %}
+                        <li class="glide__slide">
+                            <div class="container mx-2 text-center">
+                                <div style="height: 4.5rem;" class="container-fluid">
+                                    {% image item.image height-70 class="img-fluid" alt="{{ item.caption }}" %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}
+
+<script src="{% static 'node_modules/@glidejs/glide/dist/glide.min.js' %}"></script>
+<script>
+    var glideHero = new Glide(".glide", {
+      type: "carousel",
+      animationDuration: 1500,
+      autoplay: 2000,
+      focusAt: "1",
+      startAt: 1,
+      perView: 3,
+    });
+  
+    glideHero.mount();
+</script>
+
+{% endblock extra_js %}

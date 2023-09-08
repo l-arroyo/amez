@@ -39,7 +39,7 @@
                         <h2 class="display-4">Eventos</h2>
                         <p>{{ page.event_info|richtext }}</p>
                         <p>Puedes acceder a la información de nuestros <strong>próximos eventos</strong> aquí:</p>
-                        <a href="/evento" class="btn btn-amez rounded-pill px-4 py-4 mt-2">PRÓXIMO EVENTO</a>
+                        <a href="/eventos" class="btn btn-amez rounded-pill px-4 py-4 mt-2">PRÓXIMOS EVENTOS</a>
                     </div>
                 </div>
             </div>
@@ -47,20 +47,3 @@
     </section>
 </main>
 {% endblock %}
-{% block extra_js %}
-
-<script src="{% static 'node_modules/@glidejs/glide/dist/glide.min.js' %}"></script>
-<script>
-    var glideHero = new Glide(".glide", {
-      type: "carousel",
-      animationDuration: 1500,
-      autoplay: 2000,
-      focusAt: "1",
-      startAt: 1,
-      perView: 3,
-    });
-  
-    glideHero.mount();
-</script>
-
-{% endblock extra_js %}

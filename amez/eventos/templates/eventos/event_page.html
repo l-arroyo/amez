@@ -1,23 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags static %}
 
-{% block extra_js %}
-
-<script src="{% static 'node_modules/@glidejs/glide/dist/glide.min.js' %}"></script>
-<script>
-    var glideHero = new Glide(".glide", {
-      type: "carousel",
-      animationDuration: 2000,
-      autoplay: 2000,
-      startAt: 1,
-      perView: 3,
-    });
-  
-    glideHero.mount();
-</script>
-
-{% endblock extra_js %}
-
 {% block body_class %}
 {% endblock %}
 

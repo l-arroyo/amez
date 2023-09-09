@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<header class="masthead text-center text-white" style="background-image: url('/static/images/event-bg.jpg');">
+<header class="masthead text-center text-white" style="background: url('{{ page.hero_image_url }}')">
     <div class="masthead-content">
     <h1 class="masthead-subheading mb-0">{{ page.title }}</h1>
     </div>
@@ -14,8 +14,8 @@
     <div class="container px-5">
         <div class="align-items-center">
                 <div class="p-5 text-center">
-                    <h2 class="display-4">Próximos eventos</h2>
-                    <p>{{ page.informacion|richtext }}</p>
+                    <h2 class="display-4"></h2>
+                    <p></p>
                 </div>
         </div>
     </div>

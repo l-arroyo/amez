@@ -1,9 +1,7 @@
 from django.db import models
-from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import RichTextField
-from wagtail.models import Page, Orderable
+from wagtail.models import Page
 from wagtail.images.edit_handlers import FieldPanel
-from modelcluster.fields import ParentalKey
 
 class HomePage(Page):
     hero_image = models.ForeignKey(

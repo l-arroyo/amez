@@ -14,8 +14,14 @@
     <div class="container px-5">
         <div class="align-items-center">
                 <div class="p-5 text-center">
-                    <h2 class="display-4"></h2>
-                    <p></p>
+                    {% if event_page.próximos_eventos %}
+                        {% for evento in event_page.próximos_eventos %}
+                            <h2>{{ evento.value.event_name }}</h2>
+                            <div>{{ evento.value.event_content|richtext }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Actualmente no hemos anunciado ningún evento</p>
+                    {% endif %}
                 </div>
         </div>
     </div>
